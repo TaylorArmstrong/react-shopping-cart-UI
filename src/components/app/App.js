@@ -28,20 +28,20 @@ class App extends Component {
     }
   }
 
-  
-  onAddItem = ({ item, reason }) => {
-    const maxId = this.state.items
-      .reduce((acc, el) => Math.max(acc, el.id), 0)
 
-    const nextMaxId = maxId + 1
-    const newItem = { id: nextMaxId, item, reason }
-    const newItems = [...this.state.items, newItem]
+  // onAddItem = ({ item }) => {
+  //   const maxId = this.state.items
+  //     .reduce((acc, el) => Math.max(acc, el.id), 0)
 
-    this.setState({
-      ...this.state,
-      items: newItems
-    })
-  }
+  //   const nextMaxId = maxId + 1
+  //   const newItem = { id: nextMaxId, item, reason }
+  //   const newItems = [...this.state.items, newItem]
+
+  //   this.setState({
+  //     ...this.state,
+  //     items: newItems
+  //   })
+  // }
 
 
   render() {
