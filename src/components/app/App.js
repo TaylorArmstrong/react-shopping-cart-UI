@@ -3,6 +3,7 @@ import './App.css'
 import CartHeader from '../cart-header/cart-header.js'
 import CartFooter from '../cart-footer/cart-footer.js'
 import CartItems from '../cart-items/cart-items.js'
+import AddItem from '../add-item/add-item.js'
 
 
 class App extends Component {
@@ -29,27 +30,27 @@ class App extends Component {
   }
 
 
-  // onAddItem = ({ item }) => {
-  //   const maxId = this.state.items
-  //     .reduce((acc, el) => Math.max(acc, el.id), 0)
+  onAddItem = ({ quantity, product }) => {
+    const nextMaxId = this.state.items
+      .reduce((acc, el) => Math.max(acc, el.id), 0) + 1
 
-  //   const nextMaxId = maxId + 1
-  //   const newItem = { id: nextMaxId, item, reason }
-  //   const newItems = [...this.state.items, newItem]
+    const newItem = { quantity, product, id: nextMaxId }
+    const newItems = [...this.state.items, newItem]
 
-  //   this.setState({
-  //     ...this.state,
-  //     items: newItems
-  //   })
-  // }
+    this.setState({
+      ...this.state,
+      items: newItems
+    })
+  }
 
 
   render() {
     return (
       <div className="App">
       <CartHeader />
-      <CartItems items={this.state.items}/>
-      <CartFooter copywrite='2016'/>
+        <CartItems items={this.state.items}/>
+        <AddItem products={this.state.products} onAddItem={this.onAddItem}/>
+      <CartFooter copywrite='2016' />
       </div>
     )
   }

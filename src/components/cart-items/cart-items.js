@@ -3,6 +3,9 @@ import CartItem from './cart-item'
 
 export default class CartItems extends React.Component {
     render() {
+        const listOfItems = this.props.items.map(elem => <CartItem key={elem.id} item={elem} />)
+        const total = this.props.items.reduce((acc, item) => {
+            return acc + (item.product.priceInCents * item.quantity)}, 0) / 100
         return (
             <div className="container">
                 <h1>Cart Items</h1>
@@ -14,7 +17,8 @@ export default class CartItems extends React.Component {
                             <div className="col-md-2">Quantity</div>
                         </div>
                     </div>
-                    {this.props.items.map((elem) => <CartItem key={elem.id} id={elem.id} item={elem} />)}
+                    { listOfItems }
+                    <p><b>Shopping Cart Balance: ${total}</b></p>
                 </div>
             </div>
         )
